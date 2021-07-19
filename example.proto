@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+message Input {
+    int32 id = 1;
+    string payload = 2;
+    
+    reserved 3, 15, 9 to 11;
+    reserved "foo", "bar";
+}
+
+message Output {
+    string result = 1;
+    ResponseType type = 2;
+
+    enum ResponseType {
+        A = 0;
+        B = 1;
+        C = 2;
+    }
+}
+
+service ExampleService {
+    rpc Ping(Input) returns (Output) {}
+}
